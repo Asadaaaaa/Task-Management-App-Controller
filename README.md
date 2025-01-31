@@ -9,6 +9,72 @@ A robust Node.js backend service for the Task Management Application that provid
 - JWT-based Authentication
 - MongoDB Integration
 
+## Architecture
+
+The backend follows a layered architecture pattern that separates concerns and promotes maintainability:
+
+### Core Components
+
+1. **Routes Layer** (`/routes`)
+   - Entry point for all API endpoints
+   - Handles request routing and API versioning
+   - Maps HTTP methods to corresponding controllers
+   - Groups related endpoints (e.g., auth routes, task routes)
+
+2. **Controllers Layer** (`/controllers`)
+   - Handles HTTP requests and responses
+   - Processes incoming data
+   - Coordinates between services and data presentation
+   - Returns appropriate HTTP responses
+
+3. **Services Layer** (`/services`)
+   - Contains core business logic
+   - Handles data processing and operations
+   - Interacts with models for database operations
+   - Implements business rules and validations
+
+4. **Models Layer** (`/models`)
+   - Defines database schemas
+   - Handles data structure and relationships
+   - Implements model-level validations
+   - Manages database interactions
+
+### Supporting Components
+
+5. **Validators** (`/validators`)
+   - Request payload validation
+   - Data format verification
+   - Input sanitization
+   - Schema validation rules
+
+6. **Middlewares** (`/middlewares`)
+   - Authentication checks
+   - Request preprocessing
+   - Error handling
+   - Logging and monitoring
+   - CORS and security measures
+
+7. **Helpers** (`/helpers`)
+   - Utility functions
+   - Common operations
+   - Shared functionality
+
+8. **Resources** (`/resources`)
+   - Static resources
+   - Configuration files
+   - Constants and enums
+
+### Request Flow
+
+1. Client makes HTTP request
+2. Request passes through relevant middlewares
+3. Route handler directs to appropriate controller
+4. Validator checks request payload
+5. Controller processes request and calls service
+6. Service executes business logic using models
+7. Response flows back through controller
+8. Client receives formatted response
+
 ## Prerequisites
 
 - Node.js (v14 or higher)
